@@ -28,9 +28,48 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+        
+    - name: Gradle Caching
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: make application.yml
+      run: |
+        mkdir ./src/main/resources
+        cd ./src/main/resources
+        touch ./application.yml
+        echo "${{ secrets.YML }}" > ./application.yml
+      shell: bash
             
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
     - name: Build with Gradle
       run : ./gradlew clean build --exclude-task test
+      
+    - name: Docker build
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker build -t app .
+        docker tag app ${{ secrets.DOCKER_USERNAME }}/munbanggu:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/munbanggu:latest
+
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      id: deploy
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.PRIVATE_KEY }}
+        envs: GITHUB_SHA
+        script: |
+          sudo docker ps
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/munbnaggu
+          sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/munbanggu
+          sudo docker image prune -f
