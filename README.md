@@ -51,7 +51,7 @@
 ![erd](img/munbanggu_erd.png)
 
 ## 시스템 아키텍처
-![architecture](img/munbanggu_architecture.png)
+![architecture](img/system_architecture.png)
 
 ## 기술 스택
 
