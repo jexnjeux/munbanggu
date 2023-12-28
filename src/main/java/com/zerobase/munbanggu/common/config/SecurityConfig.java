@@ -44,7 +44,9 @@ public class SecurityConfig {
                 .exceptionHandling() .defaultAuthenticationEntryPointFor(unauthorizedHandler, new AntPathRequestMatcher("/api/**"))
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/api/**").permitAll()
+                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/api/**", "/swagger-ui.html/**", "/swagger-ui/**", "/v2/api-docs","/configuration/ui",
+                        "/swagger-resources/**", "/configuration/security",
+                        "/swagger-ui.html", "/webjars/**","/swagger/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
