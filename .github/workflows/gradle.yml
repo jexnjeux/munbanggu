@@ -64,7 +64,6 @@ jobs:
 
     - name: Publish to Docker hub
       run : |
-        docker tag app ${{ secrets.DOCKER_USERNAME }}/munbanggu:latest
         docker push ${{ secrets.DOCKER_USERNAME }}/munbanggu:latest
 
     - name: Deploy
