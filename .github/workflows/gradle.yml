@@ -96,7 +96,7 @@ jobs:
           sudo docker stop $(docker ps -q)
           sudo docker rm $(docker ps -qa)
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/munbnaggu
-          docker-compose up -d
+          docker-compose -f /compose/docker-compose.yml up -d
           sudo docker run -it -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/munbanggu
 
     - name: Remove Github Actions IP from security group
