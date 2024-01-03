@@ -13,7 +13,7 @@
     - **환경** `GithubActions` `Docker` `EC2`
     - **협업 도구** `Github` `Notion` `Slack` `Discord`
       
-### 🔗 [Swagger API 문서](http://43.203.21.168:8080/swagger-ui/#/)
+<!-- ### 🔗 [Swagger API 문서](http://43.203.21.168:8080/swagger-ui/#/)-->
 
 ## 팀원
 <div align="center">
