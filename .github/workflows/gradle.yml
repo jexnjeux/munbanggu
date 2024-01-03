@@ -92,6 +92,7 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         envs: GITHUB_SHA
         script: |
+          sudo chmod 666 /var/run/docker.sock
           sudo docker stop $(docker ps -q)
           sudo docker rm $(docker ps -qa)
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/munbnaggu
