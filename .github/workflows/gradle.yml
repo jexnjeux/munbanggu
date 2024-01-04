@@ -93,7 +93,6 @@ jobs:
         envs: GITHUB_SHA
         script: |
           sudo chmod 666 /var/run/docker.sock
-          sudo usermod -aG docker $USER
           
           # Docker가 설치되어 있는지 확인
           docker version
