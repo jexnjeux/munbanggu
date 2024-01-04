@@ -100,15 +100,21 @@ jobs:
           # 컨테이너 중지 및 제거
           docker-compose -f /compose/docker-compose.yml down
 
-          # 혹시 남아있을 수 있는 컨테이너 강제 중지 및 제거
-          sudo docker stop $(docker ps -q) || true
-          sudo docker rm $(docker ps -qa) || true
+          # 실행 중인 컨테이너가 있는지 확인 후 중지
+          if [ -n "$(docker ps -q)" ]; then
+              sudo docker stop $(docker ps -q)
+          fi
+
+          # 모든 컨테이너 제거
+          if [ -n "$(docker ps -qa)" ]; then
+              sudo docker rm $(docker ps -qa)
+          fi
 
           # 이미지 가져오기
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/munbanggu
 
           # 컨테이너 실행
-          docker-compose /compose/docker-compose.yml up -d
+          docker-compose -f /compose/docker-compose.yml up -d
 
     - name: Remove Github Actions IP from security group
       run: |
