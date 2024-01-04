@@ -93,7 +93,7 @@ jobs:
         envs: GITHUB_SHA
         script: |
           sudo chmod 666 /var/run/docker.sock
-          
+
           # Docker가 설치되어 있는지 확인
           docker version
 
@@ -103,13 +103,12 @@ jobs:
           # 혹시 남아있을 수 있는 컨테이너 강제 중지 및 제거
           sudo docker stop $(docker ps -q) || true
           sudo docker rm $(docker ps -qa) || true
-          
+
           # 이미지 가져오기
-          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/munbanggu  
-          
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/munbanggu
+
           # 컨테이너 실행
-          docker-compose -f /compose/docker-compose.yml up -d
-          
+          docker-compose /compose/docker-compose.yml up -d
 
     - name: Remove Github Actions IP from security group
       run: |
