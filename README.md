@@ -207,6 +207,10 @@
 **✅ CI/CD 구축**
 - Github Actions, Docker, EC2, RDS 를 이용하여 배포
 
+## 프로젝트 진행 중 경험했던 문제 해결
+- [GithubActions, Docker, EC2를 이용한 CI/CD를 구축](https://velog.io/@najiexx/GithubActions-Docker-EC2%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-CICD%EB%A5%BC-%EA%B5%AC%EC%B6%95%ED%95%98%EB%A9%B0-%EB%A7%8C%EB%82%AC%EB%8D%98-%EB%AC%B8%EC%A0%9C)
+- [Docker Compose로 Redis 와 Spring Boot 애플리케이션 실행](https://velog.io/@najiexx/Docker-Compose%EB%A1%9C-Redis-%EC%99%80-Spring-Boot-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%8B%A4%ED%96%89)
+
   
 
 
