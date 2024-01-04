@@ -95,7 +95,7 @@ jobs:
           sudo chmod 666 /var/run/docker.sock
           sudo docker stop $(docker ps -q)
           sudo docker rm $(docker ps -qa)
-          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/munbnaggu
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/munbanggu
           docker-compose -f /compose/docker-compose.yml up -d
           sudo docker run -it -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/munbanggu
 
